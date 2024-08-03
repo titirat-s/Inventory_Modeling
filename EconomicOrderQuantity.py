@@ -83,3 +83,24 @@ def chc(Q, H, decimal:int = 2):
   """
   chc = Q/2*H
   return round(chc, decimal)
+
+def impact_ratio(Q, q, percent_chg: bool = False, decimal:int = 4):
+    """Function return impact of changes between 2 numbers
+    Args:
+        Q (int:float): 1st Number
+        q (int:float): 2nd Number
+        percent_chg (bool, optional): Return only changes percent. Defaults to False.
+        decimal (int, optional): Return result decimal. Defaults to 4.
+
+    Returns:
+        Changes ratio: float    
+    """
+    if percent_chg == True:
+        c = 1.000
+    else:
+        c = 0.000
+    chg = (math.sqrt(Q/q) + math.sqrt(q/Q))/2
+    return round((chg - c)*100, decimal)
+
+impact_ratio(239, 200, True, 5) == 0.39696
+impact_ratio(29.12, 32, True) == 0.1112
